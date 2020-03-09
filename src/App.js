@@ -19,6 +19,7 @@ class App extends Component {
     this.search('homer thinking');
   }
 
+  // search method
   search = query => {
     // API call
     giphy(process.env.REACT_APP_GIPHY_TOKEN).search(
@@ -35,8 +36,14 @@ class App extends Component {
     );
   };
 
+  // get_selected_gif
+  getSelectedGif = id => {
+    this.setState({
+      selectedGifId: id
+    });
+  };
+
   render() {
-    const gifs = [{ id: 'I7p8K5EY9w9dC' }, { id: 'xU9TT471DTGJq' }];
     return (
       <div>
         <div className='left-scene'>
@@ -46,7 +53,10 @@ class App extends Component {
           </div>
         </div>
         <div className='right-scene'>
-          <GifList gifs={this.state.gifs} />
+          <GifList
+            gifs={this.state.gifs}
+            getSelectedGif={this.getSelectedGif}
+          />
         </div>
       </div>
     );
