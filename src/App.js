@@ -5,6 +5,11 @@ import GifList from './components/GifList';
 import './App.scss';
 
 class App extends Component {
+  state = {
+    gifs: [],
+    selectedGifId: 'I7p8K5EY9w9dC'
+  };
+
   render() {
     const gifs = [{ id: 'I7p8K5EY9w9dC' }, { id: 'xU9TT471DTGJq' }];
     return (
@@ -12,7 +17,7 @@ class App extends Component {
         <div className='left-scene'>
           <SearchBar />
           <div className='selected-gif'>
-            <Gif id='I7p8K5EY9w9dC' />
+            <Gif id={this.state.selectedGifId} />
           </div>
         </div>
         <div className='right-scene'>
