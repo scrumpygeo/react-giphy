@@ -3,9 +3,7 @@ import Gif from './Gif';
 
 export class GifList extends Component {
   renderList = () => {
-    return this.props.gifs.map(gif => {
-      return <Gif key={gif.id} id={gif.id} />;
-    });
+    return this.props.gifs.map(gif => <Gif key={gif.id} id={gif.id} />);
   };
 
   render() {
