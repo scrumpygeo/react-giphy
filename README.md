@@ -1,4 +1,4 @@
-## Giphy Search
+# Giphy Search
 
 In this basic react app you type in a query in the search bar and it searches for giphy images that resemple your search.
 It retrieves a list which it places on the right and when you click on one it displays the giphy in larger format.
@@ -56,7 +56,7 @@ this.setState({ selectedGifId: ...})
 
 ...flowing new props down to its children components who re-render it as well.
 
-# Part 2. Recurring Themes in React.
+# Recurring Themes in React.
 
 **Controlled Components**
 
@@ -87,3 +87,20 @@ eg:
         );
     };
 ```
+
+**Destructuring**
+
+= Explode props to reveal explicitly the keys:
+
+-> Turn this: const GifList = (props) => {}
+
+into this: const GifList ({gifs, getSelectedGif}) => {}
+
+So now you can refer to props.gifs.id as gifs.id etc.
+
+- Destructure gif further in map:
+  Turn this: gifs.map(gif => ())
+
+  into this: gifs.map(({ id }) => (
+
+        and then refer to id instead of gif.id
