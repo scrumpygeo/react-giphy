@@ -197,3 +197,28 @@ NB: (\*) : only if shouldComponentUpdate() remains true.
 At end of component lifecycle, this is called:
 
 - componentWillUnmount() - good for cleanup. - eg if you had a setInterval set up in componentDidMount, you might want to get rid of it with this with clearInterval
+
+## Helping React work more efficiently
+
+- we can stop React re-rendering/updating when not necessary with this eg from <Gif />, where we are using props in the render method:
+
+```
+            shouldComponentUpdate(nextProps, nextState) {
+                return nextProps.id !== this.props.id;
+            }
+
+- meaning if the id changes, then render otherwise don't because nthing has changed.
+```
+
+Another eg is if there is a component where we are not using props, so this would be appropriate:
+
+```
+            shouldComponentUpdate() {
+                return false;
+            }
+
+```
+
+**NB**
+
+Don't directly compare this.props with nextProps as they will always be different (comparing memory locations). Instead compare elements, eg this.props.id and nextProps.id
