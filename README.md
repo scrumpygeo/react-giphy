@@ -55,3 +55,15 @@ this.setState({ selectedGifId: ...})
 = update the state at first possible parent component level, triggering its render()
 
 ...flowing new props down to its children components who re-render it as well.
+
+# Part 2.
+
+**Controlled Components**
+
+- where input or select value is bound to the internal state of the component.
+
+- ie, user types in an input, the change triggers setState() then the change redefines the input.
+
+- eg in SearchBar.js, where we define 'term' as part of state; we set the term to be equal to the input's value - eg value={this.state.term} - then use the method called by the input tag's onChange to run setState and change the state. So the component has access to state.term.
+
+A Controlled component is useful where you have an input or a form and you need the state to hold the value of the input. Otherwise you may end up typing input and nothing changes.

@@ -7,6 +7,8 @@ import giphy from 'giphy-api';
 
 import './App.scss';
 
+const GIPHY_API_KEY = process.env.REACT_APP_GIPHY_TOKEN;
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -15,14 +17,12 @@ class App extends Component {
       gifs: [],
       selectedGifId: 'I7p8K5EY9w9dC'
     };
-
-    this.search('homer thinking');
   }
 
   // search method
   search = query => {
     // API call
-    giphy(process.env.REACT_APP_GIPHY_TOKEN).search(
+    giphy({ apiKey: GIPHY_API_KEY, https: true }).search(
       {
         q: query,
         rating: 'g',
