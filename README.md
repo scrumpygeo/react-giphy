@@ -140,3 +140,60 @@ if you didn't use ES6 arrow functions you would have to use this:
 ```
         onChange={this.handleUpdate.bind(this)}
 ```
+
+# Components Lifecycle
+
+- Mounting a component = first rendering it and puting it in the DOM.
+- unmounting = when you change a page or replace part of the application.
+
+On mounting a component the following methods are called insuccession:
+
+- constructor() - sets default state
+- componentWillMount() - lets u do stuff b4 render method called
+- render()
+- componentDidMount() - happens after render - good for doing 1st ajax query or setting a timeout or setting an interval.
+
+  - eg setTimeout
+  - eg setInterval(fn, time)
+
+```
+          eg:
+                setInterval(() => {
+                    console.log("Hello")
+                }, 3000);
+                // prints hello every 5 seconds
+```
+
+- put setInterval in componentDidMount and it can be set to fetch new info every x seconds. A classical backgound routine.
+
+## Updating Props
+
+Props are immutable (as opposed to state, which can change). There are however cases where props can change. This is when the parent is re-rendered.
+Eg in App.js, the id of the selectedGifId may change as it's sent to the Gif component. So Gif component's id may change because of the parent.
+
+Basically, it's not that props can't change but that a component can't change its own props. But it can change props of its children.
+
+- during its life, when it receives new props from its parent, the following methods are called in succession:
+
+- componentWillReceiveProps() - a warning that new props are arriving.
+- shouldComponentUpdate() - react asks if u should re-render the component
+- componentWillUpdate() -- (\*)
+- render() -- (\*)
+- componentDidUpdate() -- (\*)
+
+NB: (\*) : only if shouldComponentUpdate() remains true.
+
+## Updating State
+
+When this.setState() is called, these are the methods called in succession:
+
+- shouldComponentUpdate() - returns true if u don't do anything with it.
+- componentWillUpdate() -- (\*)
+- render() -- (\*)
+- componentDidUpdate() -- (\*)
+
+NB: (\*) : only if shouldComponentUpdate() remains true.
+
+At end of component lifecycle, this is called:
+
+- componentWillUnmount() - good for cleanup. - eg if you had a setInterval set up in componentDidMount, you might want to get rid of it with this with clearInterval
