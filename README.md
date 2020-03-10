@@ -104,3 +104,39 @@ So now you can refer to props.gifs.id as gifs.id etc.
   into this: gifs.map(({ id }) => (
 
         and then refer to id instead of gif.id
+
+**Handling Null**
+
+Sometimes initial state holds null values.
+
+Handle this with if statement.
+
+eg:
+
+```
+    const Gif = props => {
+        // blablabla
+        if (!props.id) {
+            return <p>Loading...</p>
+        }
+
+        return <img src={url} />;
+    }
+
+```
+
+In this app we might put this in the <Gif /> component before assigning a url to the src variable. If it is null we can just: return null (and component will be empty).
+
+**Binding this**
+
+If you don't use arrow functions, there is sometimes confusion as to what 'this' refers to. So in our SearchBar component, attached to the input tag, where we used this version:
+
+```
+        onChange={this.handleUpdate}
+```
+
+if you didn't use ES6 arrow functions you would have to use this:
+
+```
+        onChange={this.handleUpdate.bind(this)}
+```
