@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Gif extends Component {
   handleSelection = e => {
     // console.log(this.props);
-    if (this.props.id) {
+    if (this.props.getSelectedGif) {
       this.props.getSelectedGif(this.props.id);
     }
   };

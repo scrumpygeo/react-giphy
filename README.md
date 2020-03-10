@@ -56,7 +56,7 @@ this.setState({ selectedGifId: ...})
 
 ...flowing new props down to its children components who re-render it as well.
 
-# Part 2.
+# Part 2. Recurring Themes in React.
 
 **Controlled Components**
 
@@ -67,3 +67,23 @@ this.setState({ selectedGifId: ...})
 - eg in SearchBar.js, where we define 'term' as part of state; we set the term to be equal to the input's value - eg value={this.state.term} - then use the method called by the input tag's onChange to run setState and change the state. So the component has access to state.term.
 
 A Controlled component is useful where you have an input or a form and you need the state to hold the value of the input. Otherwise you may end up typing input and nothing changes.
+
+**List Patterns**
+
+= where you have a component to which u pass an array as props and inside this component, in the render method, you map through the array to render a list of elements.
+
+- you map over an array of props and pass the props to the children. React needs a unique key for ecah child.
+
+eg:
+
+```
+    const GifList = (props) => {
+        return (
+            <div>
+                {props.gifs.map((gif) => {
+                    return <Gif key={gif.id} id={gif.id} />;
+                })}
+            </div>
+        );
+    };
+```
